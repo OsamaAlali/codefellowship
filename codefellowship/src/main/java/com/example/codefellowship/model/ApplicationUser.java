@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class ApplicationUser implements UserDetails {
@@ -18,6 +19,9 @@ private String firstname;
 private String lastname;
 private String dateofbirth;
 private String bio;
+
+@OneToMany(mappedBy ="applicationUser")
+private List<Post> posts;
 
     public ApplicationUser() {
 
@@ -83,12 +87,12 @@ private String bio;
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return username;
     }
 
     @Override
@@ -108,6 +112,18 @@ private String bio;
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 }

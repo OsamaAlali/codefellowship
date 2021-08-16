@@ -5,12 +5,32 @@
     <title>About me</title>
 </head>
 <body>
-<header> Welcom  <samp text="${}"></samp></header>
+<header> Welcom : <samp th:text="${username}"></samp></header>
 <main>
-<P>First Name : <samp text="${user.firstname}"></samp></P>
-<P>Last Name <samp text="${user.lastname}"></samp></P>
-<P> Brith Date <samp text="${user.dateofbirth}"></samp></P>
-<P> Bio <samp text="${user.bio}"></samp></P>
+<P>First Name : <samp th:text="${user.firstname}"></samp></P>
+<P>Last Name :<samp th:text="${user.lastname}"></samp></P>
+<P> Brith Date :<samp th:text="${user.dateofbirth}"></samp></P>
+<P> Bio :<samp th:text="${user.bio}"></samp></P>
+
+<div>
+    <form action="/users" method="post">
+        <label for="body"> Add Post</label>  </br>
+        <input type="text" name="body" id="body">
+        <button type="submit"> Post</button>
+    </form>
+
+</div>
+
+    <div>
+        <h3>User Post</h3>
+        <div  th:each="post:${user.posts}">
+            <div >
+                <h5  th:text="${'post' + post.id}"></h5>
+                <h6  th:text="${post.createdAt}"></h6>
+                <p  th:text="${post.body}"></p>
+            </div>
+        </div>
+    </div>
 
 </main>
 </body>
