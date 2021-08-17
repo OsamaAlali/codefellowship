@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+  <div  th:each="follower:${allfollowing}">
+    <div class="card-body">
+      <h5 class="card-title" th:text="${follower.firstname + ' ' + follower.lastname}"></h5>
+      <h6  th:text="${follower.username}"></h6>
+      <p  th:text="${follower.bio}"></p>
+      <p>Posts</p>
+      <ul>
+        <li th:each="post:${follower.posts}" th:text="${post.body}"></li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>
